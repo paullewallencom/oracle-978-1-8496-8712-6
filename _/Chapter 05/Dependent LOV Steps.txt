@@ -1,0 +1,18 @@
+1. Run SQL to create view
+
+2. use following queries for lov
+
+select name, business_group_id  from HR_ALL_ORGANIZATION_UNITS;
+
+select name, business_group_id from per_business_groups;
+
+3. Update VO with new view
+
+4. Add attributes to PG
+
+  > Business Group
+  > Organization
+  
+  Set Search Allowed = TRUE
+  
+5. 

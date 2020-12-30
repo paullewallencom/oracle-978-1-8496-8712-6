@@ -1,0 +1,149 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="10.1.3_1268" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="PageLayoutPG" amDefName="ch4.oracle.apps.xxhr.emp.server.EmpSearchAM" windowTitle="Employee Societies Window" title="Employee Societies" controllerClass="ch4.oracle.apps.xxhr.emp.webui.EmpSocietiesCO">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:advancedTable id="EmpMasterRN" viewName="EmpSearchVO1" detailViewAttr="ShowHide" childViewAttrName="PersonId" viewLinkName="EmpSocietiesVL1">
+               <ui:contents>
+                  <oa:column id="MasterPersonIdCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="PersonIdHdr" prompt="Person ID"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="PersonId" viewAttr="PersonId"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="FullNameCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="FullNameHdr" prompt="Employee Name" sortState="yes"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="FullName" viewAttr="FullName" prompt="Employee Name"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="EmployeeNumberCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="EmployeeNumberHdr" prompt="Employee Number" sortState="yes"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="EmployeeNumber" viewAttr="EmployeeNumber"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="EmailAddressCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="EmailAddressHdr" prompt="Email Address"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="EmailAddress" viewAttr="EmailAddress"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="MgrFullNameCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="MgrFullNameHdr" sortState="no"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:messageStyledText id="MgrFullName" viewAttr="MgrFullName"/>
+                     </ui:contents>
+                  </oa:column>
+                  <oa:column id="AddSocietyCol">
+                     <ui:columnHeader>
+                        <oa:sortableHeader id="AddSocietyHdr" prompt="Add Society"/>
+                     </ui:columnHeader>
+                     <ui:contents>
+                        <oa:link id="AddSociety">
+                           <ui:primaryClientAction>
+                              <ui:fireAction event="addSociety">
+                                 <ui:parameters>
+                                    <ui:parameter key="paramMasterPersonId" value="${oa.EmpSearchVO1.PersonId}"/>
+                                 </ui:parameters>
+                              </ui:fireAction>
+                           </ui:primaryClientAction>
+                           <ui:contents>
+                              <oa:image id="AddSocietyImage" source="addicon_enabled.gif"/>
+                           </ui:contents>
+                        </oa:link>
+                     </ui:contents>
+                  </oa:column>
+               </ui:contents>
+               <ui:detail>
+                  <oa:header id="EmpDetailRN">
+                     <ui:contents>
+                        <oa:advancedTable id="EmpSocietiesRN" viewName="EmpSocietiesVO1" viewLinkName="EmpSocietiesVL1">
+                           <ui:contents>
+                              <oa:column id="DetPersonIdCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="DetPersonIdHdr"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="DetPersonId" viewAttr="PersonId"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="SocietyIdCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="SocietyIDHdr" prompt="Society ID"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="SocietyId" viewAttr="SocietyId"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="MeaningCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="MeaningHdr" prompt="Club \ Society"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="Meaning" viewAttr="Meaning"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="DateStartCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="DateStartHdr" prompt="Date Start"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="DateStart" viewAttr="DateStart"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="DateEndCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="DateEndHdr" prompt="Date End"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="DateEnd" viewAttr="DateEnd"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="SubsPeriodCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="SubsPeriodHdr" prompt="Period"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="SubsPeriod" viewAttr="SubsPeriod"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="SubsAmountCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="SubsAmountHdr" prompt="Amount"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="SubsAmount" viewAttr="SubsAmount"/>
+                                 </ui:contents>
+                              </oa:column>
+                              <oa:column id="SubsTotalCol">
+                                 <ui:columnHeader>
+                                    <oa:sortableHeader id="SubsTotalHdr" prompt="Total"/>
+                                 </ui:columnHeader>
+                                 <ui:contents>
+                                    <oa:messageStyledText id="SubsTotal" viewAttr="SubsTotal"/>
+                                 </ui:contents>
+                              </oa:column>
+                           </ui:contents>
+                        </oa:advancedTable>
+                     </ui:contents>
+                  </oa:header>
+               </ui:detail>
+            </oa:advancedTable>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

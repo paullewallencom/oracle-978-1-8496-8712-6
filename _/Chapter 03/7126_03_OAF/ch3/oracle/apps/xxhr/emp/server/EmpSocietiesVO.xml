@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+
+<ViewObject
+   Name="EmpSocietiesVO"
+   BindingStyle="OracleName"
+   CustomQuery="true"
+   RowClass="ch3.oracle.apps.xxhr.emp.server.EmpSocietiesVORowImpl"
+   ComponentClass="oracle.apps.fnd.framework.server.OAViewObjectImpl"
+   UseGlueCode="false" >
+   <SQLQuery><![CDATA[
+SELECT EmpSocietiesEO.SOCIETY_ID, 
+       EmpSocietiesEO.PERSON_ID, 
+       EmpSocietiesEO.CODE,
+       flv.MEANING, 
+       EmpSocietiesEO.DATE_START, 
+       EmpSocietiesEO.DATE_END, 
+       EmpSocietiesEO.SUBS_AMOUNT, 
+       EmpSocietiesEO.SUBS_PERIOD, 
+       EmpSocietiesEO.SUBS_TOTAL, 
+       EmpSocietiesEO.SUBS_HOLD
+FROM XXHR.XXHR_PER_SOCIETIES EmpSocietiesEO
+,    fnd_lookup_values flv
+WHERE EmpSocietiesEO.code = flv.lookup_code(+)
+  AND flv.lookup_type = 'XXHR_SOCIETY_LOV'
+   ]]></SQLQuery>
+   <DesignTime>
+      <Attr Name="_isCodegen" Value="true" />
+      <Attr Name="_isExpertMode" Value="true" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+      <Attr Name="_codeGenFlag2" Value="Access|VarAccess" />
+   </DesignTime>
+   <EntityUsage
+      Name="EmpSocietiesEO"
+      Entity="ch3.oracle.apps.xxhr.emp.schema.server.EmpSocietiesEO" >
+      <DesignTime>
+         <Attr Name="_queryClause" Value="false" />
+      </DesignTime>
+   </EntityUsage>
+   <ViewAttribute
+      Name="SocietyId"
+      IsNotNull="true"
+      EntityAttrName="SocietyId"
+      EntityUsage="EmpSocietiesEO"
+      AliasName="SOCIETY_ID" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="PersonId"
+      EntityAttrName="PersonId"
+      EntityUsage="EmpSocietiesEO"
+      AliasName="PERSON_ID" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Code"
+      IsNotNull="true"
+      EntityAttrName="Code"
+      EntityUsage="EmpSocietiesEO"
+      AliasName="CODE" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="Meaning"
+      IsPersistent="false"
+      IsNotNull="true"
+      Precision="80"
+      Type="java.lang.String"
+      ColumnType="VARCHAR2"
+      AliasName="MEANING"
+      Expression="MEANING"
+      SQLType="VARCHAR" >
+      <DesignTime>
+         <Attr Name="_DisplaySize" Value="80" />
+      </DesignTime>
+   </ViewAttribute>
+   <ViewAttribute
+      Name="DateStart"
+      EntityAttrName="DateStart"
+      EntityUsage="EmpSocietiesEO"
+      AliasName="DATE_START" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="DateEnd"
+      EntityAttrName="DateEnd"
+      EntityUsage="EmpSocietiesEO"
+      AliasName="DATE_END" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="SubsAmount"
+      EntityAttrName="SubsAmount"
+      EntityUsage="EmpSocietiesEO"
+      AliasName="SUBS_AMOUNT" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="SubsPeriod"
+      EntityAttrName="SubsPeriod"
+      EntityUsage="EmpSocietiesEO"
+      AliasName="SUBS_PERIOD" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="SubsTotal"
+      EntityAttrName="SubsTotal"
+      EntityUsage="EmpSocietiesEO"
+      AliasName="SUBS_TOTAL" >
+   </ViewAttribute>
+   <ViewAttribute
+      Name="SubsHold"
+      EntityAttrName="SubsHold"
+      EntityUsage="EmpSocietiesEO"
+      AliasName="SUBS_HOLD" >
+   </ViewAttribute>
+</ViewObject>

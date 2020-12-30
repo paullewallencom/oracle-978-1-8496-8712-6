@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+
+<AppModule
+   Name="EmpSocietiesAM"
+   ComponentClass="ch4.oracle.apps.xxhr.emp.server.EmpSocietiesAMImpl"
+   DefClass="ch4.oracle.apps.xxhr.emp.server.EmpSocietiesAMDefImpl" >
+   <DesignTime>
+      <Attr Name="_isDefCodegen" Value="true" />
+      <Attr Name="_isCodegen" Value="true" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+      <Attr Name="_deployType" Value="0" />
+   </DesignTime>
+   <ViewUsage
+      Name="EmpSocietiesVO1"
+      ViewObjectName="ch4.oracle.apps.xxhr.emp.server.EmpSocietiesVO" >
+   </ViewUsage>
+   <ViewUsage
+      Name="EmpSocietiesCreateVO1"
+      ViewObjectName="ch4.oracle.apps.xxhr.emp.server.EmpSocietiesCreateVO" >
+   </ViewUsage>
+</AppModule>

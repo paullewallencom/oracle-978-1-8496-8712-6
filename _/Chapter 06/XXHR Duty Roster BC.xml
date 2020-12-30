@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<xapi:requestset xmlns:xapi="http://xmlns.oracle.com/oxp/xapi">
+<xapi:request select="/ROSTER/WEEK">
+<xapi:delivery>
+<xapi:email server="192.168.1.2" port="25" from="noreply@yourdomain.com"  reply-to="">
+<xapi:message id="123" to="brianbadenhorst@gmail.com" cc="" attachment="true" content-type="text/html" subject="XXHR Duty Roster - Week${WeekNo}">
+<![CDATA[ <html>
+<style type="text/css">
+.style01 {font-family: Calibri;
+     font-size: 12pt;
+     color: #000000;}
+</style>
+<body>
+<div class="style01">
+<b>THIS IS AN AUTOMATED EMAIL.</b>
+<br><br>
+Please find the attached Duty Roster for Week${WeekNo}.
+<br><br>
+</body>
+</html> ]]>
+</xapi:message>
+</xapi:email>
+</xapi:delivery>
+<xapi:document output="Duty Roster Week${WeekNo}.pdf" output-type="pdf" delivery="123">
+<xapi:template type="rtf" location="xdo://XXHR.XXHR_BIP_ROSTER.en.GB/?getSource=true" filter=""></xapi:template>
+</xapi:document>
+</xapi:request>
+</xapi:requestset>
+
+

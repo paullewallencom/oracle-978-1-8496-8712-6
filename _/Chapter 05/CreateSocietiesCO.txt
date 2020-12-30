@@ -1,0 +1,167 @@
+/*===========================================================================+
+ |   Copyright (c) 2001, 2005 Oracle Corporation, Redwood Shores, CA, USA    |
+ |                         All rights reserved.                              |
+ +===========================================================================+
+ |  HISTORY                                                                  |
+ +===========================================================================*/
+package oracle.apps.xxhr.emp.webui;
+
+import com.sun.java.util.collections.Hashtable;
+
+import java.io.Serializable;
+
+import java.sql.CallableStatement;
+
+import oracle.apps.fnd.common.MessageToken;
+import oracle.apps.fnd.common.VersionInfo;
+import oracle.apps.fnd.framework.OAApplicationModule;
+import oracle.apps.fnd.framework.OAException;
+import oracle.apps.fnd.framework.OAViewObject;
+import oracle.apps.fnd.framework.server.OADBTransaction;
+import oracle.apps.fnd.framework.webui.OAControllerImpl;
+import oracle.apps.fnd.framework.webui.OADialogPage;
+import oracle.apps.fnd.framework.webui.OAPageContext;
+import oracle.apps.fnd.framework.webui.OAWebBeanConstants;
+import oracle.apps.fnd.framework.webui.TransactionUnitHelper;
+import oracle.apps.fnd.framework.webui.beans.OAWebBean;
+import oracle.apps.xxhr.emp.server.EmpSocietiesCreateVOImpl;
+
+/**
+ * Controller for ...
+ */
+public class CreateSocietyCO extends OAControllerImpl
+{
+  public static final String RCS_ID="$Header$";
+  public static final boolean RCS_ID_RECORDED =
+        VersionInfo.recordClassVersion(RCS_ID, "%packagename%");
+
+  /**
+   * Layout and page setup logic for a region.
+   * @param pageContext the current OA page context
+   * @param webBean the web bean corresponding to the region
+   */
+  public void processRequest(OAPageContext pageContext, OAWebBean webBean) {
+    super.processRequest(pageContext, webBean);
+    // If isBackNavigationFired = false, we're here after a valid navigation
+    // and we should proceed normally.
+        
+    //   if (!pageContext.isBackNavigationFired(false)) {
+    //  TransactionUnitHelper.startTransactionUnit(pageContext, "societyCreateTxn");
+      
+      // Create page's controller processRequest could be re-entered
+      // upon normal page flow form submission if failover to another
+      // JVM occurred or if a recycled AM was activated.
+      
+      // We don't want to re-create a new row with a new societyId
+      // if this occurs because the new row should already be present.
+      
+      // If we created a new row with a different societyId it would
+      // result in a stale data error situation.
+      if (!pageContext.isFormSubmission()) {
+            OAApplicationModule am = pageContext.getApplicationModule(webBean);
+
+            // Capture the paramter passed in the URL
+            String paramUrlAction = pageContext.getParameter("urlParam");     
+            // If the URL parameter was from the Add Society button call our create method
+            if (paramUrlAction.equals("Create")) {
+               // Capture the parameter passed in the hash
+               String paramPersonId = pageContext.getParameter("mapParam1");
+               Serializable[] params = {paramPersonId};
+               am.invokeMethod("createNewSociety", params);
+            }
+            else if (paramUrlAction.equals("Update")) {
+               // Capture the parameter passed in the hash
+               String paramSocietyId = pageContext.getParameter("mapParam1");
+               Serializable[] params = {paramSocietyId};            
+               am.invokeMethod("updateSociety", params);            
+            }
+      }
+     // else 
+     // { 
+     //   if (!TransactionUnitHelper.isTransactionUnitInProgress(pageContext, "societyCreateTxn", true))
+     //   { 
+          // We got here through some use of the browser "Back" button, so we 
+          // will display a stale data error and disallow access to the page.
+
+          // We would normally display a more specific message here
+          // telling the user she can't use the browser "Back" button
+          // Instead, we will display the Applications standard STATE LOSS ERROR message.
+          
+     //     OADialogPage dialogPage = new OADialogPage(STATE_LOSS_ERROR); 
+     //     pageContext.redirectToDialogPage(dialogPage); 
+     //   } 
+     // }
+    //}
+  }
+     /**
+      * Procedure to handle form submissions for form elements in
+      * a region.
+      * @param pageContext the current OA page context
+      * @param webBean the web bean corresponding to the region
+      */
+     public void processFormRequest(OAPageContext pageContext, OAWebBean webBean)
+     {
+       super.processFormRequest(pageContext, webBean);
+       OAApplicationModule am = pageContext.getApplicationModule(webBean);   
+       
+       // Capturing the event when the Apply button is clicked
+       if (pageContext.getParameter("Apply") != null) {  
+          // Call a method to commit the transaction and display a message
+          am.invokeMethod("commitTransaction");
+          throw new OAException("Society successfully created");
+       }
+       // Capturing the event when the Call DB Pkg button is clicked
+       else if (pageContext.getParameter("plsqlButton") != null) {
+       
+           OAViewObject vo = (OAViewObject)am.findViewObject("EmpSocietiesCreateVO1");
+           String paramSocietyId = vo.first().getAttribute("SocietyId").toString();
+           //Serializable[] params = {paramSocietyId};
+           //am.invokeMethod("insertSocietyLog", params);          
+
+           // **** Code for Dialog Page Starts Here ****:
+           // Define the Warning Message and Initialize the Dialog Page with the Warning Message
+           String msg = "You are about to call a database package for this society. Continue?";
+           OAException DBWarning = new OAException(msg);
+           OADialogPage dialogPage = new OADialogPage(OAException.WARNING, DBWarning, null, "", "");
+
+           // Set the Prompts for YES and NO button + Associate an event with YES button
+           String yes = pageContext.getMessage("AK", "FWK_TBX_T_YES", null);
+           String no = pageContext.getMessage("AK", "FWK_TBX_T_NO", null);
+           
+           // Set the ID of the YES Button = confirmDBAction
+           dialogPage.setOkButtonItemName("okDBAction");
+           // Set the ID of the NO Button = denyDBAction
+           dialogPage.setNoButtonItemName("noDBAction");  
+           
+           // Convert the YES and NO buttons to SUBMIT BUTTONS
+           dialogPage.setOkButtonToPost(true);
+           dialogPage.setNoButtonToPost(true);
+           dialogPage.setPostToCallingPage(true);
+           
+           // Set the labels of the buttons
+           dialogPage.setOkButtonLabel(yes);
+           dialogPage.setNoButtonLabel(no);
+           
+           // Pass parameters from the page to Dialog Page and re-direct to Dialog Page           
+           java.util.Hashtable formParams = new java.util.Hashtable(1);
+           formParams.put("socIdDB",paramSocietyId);
+           dialogPage.setFormParameters(formParams);
+           
+           pageContext.redirectToDialogPage(dialogPage);
+       }
+       // Yes button clicked
+       else if (pageContext.getParameter("okDBAction") != null){
+           
+          String paramSocietyId = pageContext.getParameter("socIdDB");       
+          Serializable[] params = {paramSocietyId};
+          // Call method to insert record into database
+          am.invokeMethod("insertSocietyLog", params);          
+
+       }
+       // No button clicked
+       else if (pageContext.getParameter("noDBAction") != null) {
+          // Write Action code for No Button           
+          throw new OAException("Transaction cancelled.", OAException.INFORMATION); 
+       }
+    }
+  }

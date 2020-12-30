@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig>
+   <AppModuleConfigBag>
+      <AppModuleConfig name="EmpSocitiesAMLocal">
+         <AppModuleJndiName>ch3.oracle.apps.xxhr.emp.server.EmpSocitiesAM</AppModuleJndiName>
+         <DeployPlatform>LOCAL</DeployPlatform>
+         <JDBCName>VISR12</JDBCName>
+         <ApplicationName>ch3.oracle.apps.xxhr.emp.server.EmpSocitiesAM</ApplicationName>
+         <jbo.project>OAProjectCh3</jbo.project>
+      </AppModuleConfig>
+      <AppModuleConfig name="EmpSearchAMLocal">
+         <AppModuleJndiName>ch3.oracle.apps.xxhr.emp.server.EmpSearchAM</AppModuleJndiName>
+         <DeployPlatform>LOCAL</DeployPlatform>
+         <JDBCName>VISR12</JDBCName>
+         <ApplicationName>ch3.oracle.apps.xxhr.emp.server.EmpSearchAM</ApplicationName>
+         <jbo.project>OAProjectCh3</jbo.project>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <ConnectionDefinition name="VISR12">
+      <ENTRY name="JDBC_PORT" value="1521"/>
+      <ENTRY name="ConnectionType" value="JDBC"/>
+      <ENTRY name="HOSTNAME" value="focusthreadr12.com"/>
+      <ENTRY name="user" value="apps"/>
+      <ENTRY name="ConnectionName" value="VISR12"/>
+      <ENTRY name="SID" value="VISR12"/>
+      <ENTRY name="JdbcDriver" value="oracle.jdbc.OracleDriver"/>
+      <ENTRY name="password">
+         <![CDATA[{904}054E3B4DD25576343B6ABFAADFA47A4D28]]>
+      </ENTRY>
+      <ENTRY name="ORACLE_JDBC_TYPE" value="thin"/>
+      <ENTRY name="DeployPassword" value="true"/>
+   </ConnectionDefinition>
+</BC4JConfig>

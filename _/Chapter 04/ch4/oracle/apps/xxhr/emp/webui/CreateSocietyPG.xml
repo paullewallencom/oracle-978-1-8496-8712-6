@@ -1,0 +1,38 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="10.1.3_1268" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="PageLayoutRN" amDefName="ch4.oracle.apps.xxhr.emp.server.EmpSocietiesAM" windowTitle="Employee Societies" controllerClass="ch4.oracle.apps.xxhr.emp.webui.CreateSocietyCO" scope="/" title="Insert \ Update Societies">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:defaultSingleColumn id="EmpSocietiesCreateRN">
+               <ui:contents>
+                  <oa:messageStyledText id="PersonId" dataType="NUMBER" prompt="Person ID" viewName="EmpSocietiesCreateVO1" viewAttr="PersonId" maximumLength="10" required="yes"/>
+                  <oa:messageStyledText id="SocietyId" dataType="NUMBER" prompt="Society ID" viewName="EmpSocietiesCreateVO1" viewAttr="SocietyId" required="yes"/>
+                  <oa:messageLovInput id="Code" dataType="VARCHAR2" prompt="Society Code" viewName="EmpSocietiesCreateVO1" viewAttr="Code" maximumLength="20" externalListOfValues="/ch4/oracle/apps/xxhr/emp/lov/webui/SocietyNameLovRN">
+                     <lovMappings>
+                        <lovMap id="codeLovMap" lovItem="LookupCode" resultTo="Code" criteriaFrom="Code"/>
+                     </lovMappings>
+                  </oa:messageLovInput>
+                  <oa:messageTextInput id="DateStart" dataType="DATE" prompt="Start Date" viewName="EmpSocietiesCreateVO1" viewAttr="DateStart"/>
+                  <oa:messageTextInput id="DateEnd" dataType="DATE" prompt="End Date" viewName="EmpSocietiesCreateVO1" viewAttr="DateEnd"/>
+                  <oa:messageTextInput id="SubsPeriod" dataType="VARCHAR2" prompt="Period" viewName="EmpSocietiesCreateVO1" viewAttr="SubsPeriod" maximumLength="20"/>
+                  <oa:messageTextInput id="SubsAmount" dataType="VARCHAR2" prompt="Amount" viewName="EmpSocietiesCreateVO1" viewAttr="SubsAmount" maximumLength="20"/>
+                  <oa:messageTextInput id="SubsTotal" dataType="VARCHAR2" prompt="Total" viewName="EmpSocietiesCreateVO1" viewAttr="SubsTotal" maximumLength="20"/>
+                  <oa:messageCheckBox id="SubsHold" dataType="VARCHAR2" prompt="On-Hold" viewName="EmpSocietiesCreateVO1" viewAttr="SubsHold" checkedValue="Y" unCheckedValue="N"/>
+               </ui:contents>
+            </oa:defaultSingleColumn>
+            <oa:pageButtonBar id="PageButtonRN">
+               <ui:contents>
+                  <oa:submitButton id="Apply" text="Apply" prompt="Apply"/>
+                  <oa:submitButton id="Cancel" text="Cancel" prompt="Cancel"/>
+               </ui:contents>
+            </oa:pageButtonBar>
+         </ui:contents>
+         <ui:pageStatus>
+            <oa:tableLayout id="PageStatusRN" extends="/oracle/apps/fnd/framework/webui/OAReqFieldDescRG" hAlign="center"/>
+         </ui:pageStatus>
+      </oa:pageLayout>
+   </content>
+</page>

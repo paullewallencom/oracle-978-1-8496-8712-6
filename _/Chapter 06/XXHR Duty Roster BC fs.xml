@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<xapi:requestset xmlns:xapi="http://xmlns.oracle.com/oxp/xapi">
+<xapi:request select="/Roster/Week">
+<xapi:delivery />
+<xapi:document output="/usr/tmp/bip_out/XXHR Duty Roster - Week${WeekNo}" output-type="pdf">
+<xapi:template type="rtf" location="xdo://XXHR.XXHR_BIP_ROSTER.en.GB/?getSource=true" filter="" />
+</xapi:document>
+</xapi:request>
+</xapi:requestset>
+

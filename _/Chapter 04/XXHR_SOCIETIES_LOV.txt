@@ -1,0 +1,4 @@
+SELECT flv.lookup_code, 
+       flv.meaning
+FROM  fnd_lookup_values flv
+WHERE flv.lookup_type = 'XXHR_SOCIETY_LOV'

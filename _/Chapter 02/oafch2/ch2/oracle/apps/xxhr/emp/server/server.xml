@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='windows-1252' ?>
+<!DOCTYPE JboPackage SYSTEM "jbo_03_01.dtd">
+
+<JboPackage
+   Name="server"
+   SeparateXMLFiles="true"
+   PackageName="ch2.oracle.apps.xxhr.emp.server" >
+   <DesignTime>
+      <Attr Name="_ejbPackage" Value="false" />
+      <Attr Name="_version" Value="10.1.3.41.57" />
+   </DesignTime>
+   <Containee
+      Name="EmpSearchAM"
+      FullName="ch2.oracle.apps.xxhr.emp.server.EmpSearchAM"
+      ObjectType="AppModule" >
+   </Containee>
+   <Containee
+      Name="EmpSearchVO"
+      FullName="ch2.oracle.apps.xxhr.emp.server.EmpSearchVO"
+      ObjectType="ViewObject" >
+   </Containee>
+</JboPackage>

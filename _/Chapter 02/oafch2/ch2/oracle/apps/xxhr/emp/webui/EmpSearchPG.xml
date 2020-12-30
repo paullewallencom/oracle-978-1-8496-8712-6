@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<page xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:ui="http://xmlns.oracle.com/uix/ui" version="10.1.3_1268" xml:lang="en-US" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$">
+   <content>
+      <oa:pageLayout id="PageLayoutPG" amDefName="ch2.oracle.apps.xxhr.emp.server.EmpSearchAM" windowTitle="Employee Search Window" title="Employee Search">
+         <ui:corporateBranding>
+            <oa:image id="corporateBrandingImage" source="/OA_MEDIA/FNDSSCORP.gif"/>
+         </ui:corporateBranding>
+         <ui:contents>
+            <oa:query id="EmpQueryRN" mode="resultsBasedSearch" dispSimple="true" dispCustomized="true" dispAdvanced="true">
+               <ui:contents>
+                  <oa:table id="EmpResultsRN" width="100%" userCustomizable="true" shortDesc="Employee Search Results">
+                     <ui:contents>
+                        <oa:messageStyledText id="FullName" dataType="VARCHAR2" prompt="Employee Name" viewName="EmpSearchVO1" viewAttr="FullName" maximumLength="240" queryable="true" sortState="yes"/>
+                        <oa:messageStyledText id="EmployeeNumber" dataType="VARCHAR2" prompt="Employee Number" viewName="EmpSearchVO1" viewAttr="EmployeeNumber" maximumLength="30" queryable="true" sortState="yes" initSortSeq="first"/>
+                        <oa:messageStyledText id="EmailAddress" dataType="VARCHAR2" prompt="Employee Email" viewName="EmpSearchVO1" viewAttr="EmailAddress" maximumLength="240"/>
+                        <oa:messageStyledText id="MgrFullName" dataType="VARCHAR2" prompt="Manager Name" viewName="EmpSearchVO1" viewAttr="MgrFullName" maximumLength="240" queryable="true" sortState="yes"/>
+                        <oa:messageStyledText id="MgrEmployeeNumber" dataType="VARCHAR2" prompt="Manager Number" viewName="EmpSearchVO1" viewAttr="MgrEmployeeNumber" maximumLength="30" queryable="true" sortState="yes"/>
+                        <oa:messageStyledText id="MgrEmailAddress" dataType="VARCHAR2" prompt="Manager Email" viewName="EmpSearchVO1" viewAttr="MgrEmailAddress" maximumLength="240"/>
+                     </ui:contents>
+                  </oa:table>
+               </ui:contents>
+            </oa:query>
+         </ui:contents>
+      </oa:pageLayout>
+   </content>
+</page>

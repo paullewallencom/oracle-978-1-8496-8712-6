@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oa:listOfValues version="10.1.3_1268" xml:lang="en-US" xmlns:oa="http://xmlns.oracle.com/oa" xmlns:jrad="http://xmlns.oracle.com/jrad" xmlns:ui="http://xmlns.oracle.com/uix/ui" xmlns:user="http://xmlns.oracle.com/jrad/user" xmlns="http://xmlns.oracle.com/jrad" file-version="$Header$" amDefName="ch4.oracle.apps.xxhr.emp.lov.server.SocietyNameLovAM" scope="/" advancedSearchAllowed="true">
+   <ui:contents>
+      <oa:table name="SocietyNameLovRN" id="SocietyNameResultsRN">
+         <ui:contents>
+            <oa:messageStyledText id="LookupCode" dataType="VARCHAR2" prompt="CodeSociety Code" viewName="SocietyNameLovVO1" viewAttr="LookupCode" maximumLength="30" selectiveSearchCriteria="true"/>
+            <oa:messageStyledText id="Meaning" dataType="VARCHAR2" prompt="Description" viewName="SocietyNameLovVO1" viewAttr="Meaning" maximumLength="80" selectiveSearchCriteria="true"/>
+         </ui:contents>
+      </oa:table>
+   </ui:contents>
+</oa:listOfValues>
